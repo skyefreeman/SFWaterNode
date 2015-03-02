@@ -27,7 +27,7 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.waterSurface splash:50 speed:100];
+    [self.waterSurface splash:15 speed:40];
 }
 
 -(void)update:(CFTimeInterval)currentTime {

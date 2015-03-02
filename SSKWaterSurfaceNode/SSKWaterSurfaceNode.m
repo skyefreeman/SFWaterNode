@@ -8,7 +8,7 @@
 
 #import "SSKWaterSurfaceNode.h"
 
-CGFloat const kJointWidth = 5.0;
+CGFloat const kJointWidth = 10;
 
 //Hooke's law a = -k/m * x
 @implementation SSKWaterJoint
@@ -22,24 +22,24 @@ CGFloat const kJointWidth = 5.0;
         self.startPosition = position;
         self.currentPosition = position;
         self.speed = 0;
-        self.mass = 1;
     }
     return self;
 }
 
 - (void)update:(NSTimeInterval)dt {
+    CGFloat d = 0.025;
     CGFloat k = 0.025;
     CGFloat x = self.currentPosition.y - self.startPosition.y;
     CGFloat acceleration = -k * x;
     
     self.currentPosition = CGPointMake(self.currentPosition.x, self.currentPosition.y + self.speed);
-    self.speed += acceleration;
+    self.speed += acceleration - d;
 }
 @end
 
 @interface SSKWaterSurfaceNode()
 @property (nonatomic) NSMutableArray *waterJoints;
-@property (nonatomic) SKNode *waterSurface;
+@property (nonatomic) SKShapeNode *waterSurface;
 @property (nonatomic) CGFloat spread;
 @end
 
@@ -51,10 +51,10 @@ CGFloat const kJointWidth = 5.0;
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
     self = [super init];
     if (self) {
-        self.spread = 0.5;
+        self.spread = 0.4;
         
         self.waterJoints = [self createSurfacePointsWithStart:startPoint end:endPoint];
-        self.waterSurface = [self createWaterJointsAtPoints:self.waterJoints];
+        self.waterSurface = [SKShapeNode shapeNodeWithPath:[self pathFromJoints:self.waterJoints]];
         [self addChild:self.waterSurface];
     }
     
@@ -84,22 +84,15 @@ CGFloat const kJointWidth = 5.0;
     return [NSMutableArray arrayWithArray:tempPoints];
 }
 
-- (SKNode*)createWaterJointsAtPoints:(NSMutableArray*)joints {
-    SKNode *surfaceNode = [SKNode new];
+- (CGPathRef)pathFromJoints:(NSArray*)joints {
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, nil, [(SSKWaterJoint*)[joints objectAtIndex:0] currentPosition].x,[(SSKWaterJoint*)[joints objectAtIndex:0] currentPosition].y);
     
     for (SSKWaterJoint *joint in joints) {
-        SKShapeNode *waterJoint = [self newJointAtPoint:joint.currentPosition];
-        [surfaceNode addChild:waterJoint];
+        CGPathAddLineToPoint(path, nil, [joint currentPosition].x, [joint currentPosition].y);
     }
-
-    return surfaceNode;
-}
-
-- (SKShapeNode*)newJointAtPoint:(CGPoint)point {
-    SKShapeNode *newJoint = [SKShapeNode shapeNodeWithCircleOfRadius:kJointWidth/2];
-    [newJoint setFillColor:[SKColor whiteColor]];
-    [newJoint setPosition:point];
-    return newJoint;
+    CGPathCloseSubpath(path);
+    return path;
 }
 
 #pragma mark - Apply splash 
@@ -111,6 +104,11 @@ CGFloat const kJointWidth = 5.0;
 
 #pragma mark - Update
 - (void)update:(NSTimeInterval)dt {
+    [self updateJoints:dt];
+    [self updateSurfaceNodes:dt];
+}
+
+- (void)updateJoints:(NSTimeInterval)dt {
     //Apply Hooke's law
     for (int i = 0; i < self.waterJoints.count; i++) {
         [(SSKWaterJoint*)[self.waterJoints objectAtIndex:i] update:dt];
@@ -125,34 +123,31 @@ CGFloat const kJointWidth = 5.0;
             if (i > 0) {
                 SSKWaterJoint *previousjoint = (SSKWaterJoint*)[self.waterJoints objectAtIndex:i - 1];
                 [leftDeltas removeObjectAtIndex:i];
-                [leftDeltas insertObject:[self floatAsObject:self.spread * (currentJoint.currentPosition.y - previousjoint.currentPosition.y)] atIndex:i];
-                [self newSpeed:[self objectAsFloat:(NSNumber*)[leftDeltas objectAtIndex:i]] waterJointAtIndex:i - 1];
+                [leftDeltas insertObject:[NSNumber numberWithFloat:(self.spread * (currentJoint.currentPosition.y - previousjoint.currentPosition.y))] atIndex:i];
+                [self newSpeed:[(NSNumber*)[leftDeltas objectAtIndex:i] floatValue] waterJointAtIndex:i - 1];
             }
             if (i < self.waterJoints.count - 1) {
                 SSKWaterJoint *nextJoint = (SSKWaterJoint*)[self.waterJoints objectAtIndex:i + 1];
                 [rightDeltas removeObjectAtIndex:i];
-                [rightDeltas insertObject:[self floatAsObject:self.spread * (currentJoint.currentPosition.y - nextJoint.currentPosition.y)] atIndex:i];
-                [self newSpeed:[self objectAsFloat:(NSNumber*)[rightDeltas objectAtIndex:i]] waterJointAtIndex:i + 1];
+                [rightDeltas insertObject:[NSNumber numberWithFloat:(self.spread * (currentJoint.currentPosition.y - nextJoint.currentPosition.y))] atIndex:i];
+                [self newSpeed:[(NSNumber*)[rightDeltas objectAtIndex:i] floatValue] waterJointAtIndex:i + 1];
             }
         }
         for (int i = 0; i < self.waterJoints.count; i++) {
             if (i > 0) {
-                [self newHeight:[self objectAsFloat:(NSNumber*)[leftDeltas objectAtIndex:i]] waterJointAtIndex:i - 1];
+                [self newHeight:[(NSNumber*)[leftDeltas objectAtIndex:i] floatValue] waterJointAtIndex:i - 1];
             }
             if (i < self.waterJoints.count - 1) {
-                [self newHeight:[self objectAsFloat:(NSNumber*)[rightDeltas objectAtIndex:i]] waterJointAtIndex:i + 1];
+                [self newHeight:[(NSNumber*)[rightDeltas objectAtIndex:i] floatValue] waterJointAtIndex:i + 1];
             }
         }
-        
-        [self updateSurfaceNodes];
     }
 }
 
-- (void)updateSurfaceNodes {
-    for (int i = 0; i < self.waterJoints.count; i++) {
-        [(SKShapeNode*)[self.waterSurface.children objectAtIndex:i] setPosition:[(SSKWaterJoint*)[self.waterJoints objectAtIndex:i] currentPosition]];
-    }
+- (void)updateSurfaceNodes:(NSTimeInterval)dt {
+    [self.waterSurface setPath:[self pathFromJoints:self.waterJoints]];
 }
+
 #pragma mark - Convenience
 - (void)newHeight:(CGFloat)delta waterJointAtIndex:(NSUInteger)index {
     CGPoint oldPosition = [(SSKWaterJoint*)[self.waterJoints objectAtIndex:index] currentPosition];
@@ -168,14 +163,6 @@ CGFloat const kJointWidth = 5.0;
     NSLog(@"new speed: %fl",newSpeed);
     
     [(SSKWaterJoint*)[self.waterJoints objectAtIndex:index] setSpeed:newSpeed];
-}
-
-- (NSNumber*)floatAsObject:(CGFloat)floatNum {
-    return [NSNumber numberWithFloat:floatNum];
-}
-
-- (CGFloat)objectAsFloat:(NSNumber*)object {
-    return [object floatValue];
 }
 
 - (NSMutableArray*)arrayWithCapacity:(NSUInteger)capacity {

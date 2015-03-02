@@ -8,7 +8,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+//The water surface all together
 @interface SSKWaterSurfaceNode : SKNode
+
 + (instancetype)withStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 
@@ -17,11 +19,12 @@
 
 @end
 
+//Individual joint springs on water surface
 @interface SSKWaterJoint : NSObject
+
 @property (nonatomic) CGPoint startPosition;
 @property (nonatomic) CGPoint currentPosition;
 @property (nonatomic) CGFloat speed;
-@property (nonatomic) CGFloat mass;
 
 + (instancetype)withPosition:(CGPoint)position;
 - (instancetype)initWithPosition:(CGPoint)position;
