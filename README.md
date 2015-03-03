@@ -21,3 +21,20 @@ And then in your scene's update method:
      [self.waterSurface update:currentTime];
 }
 ```
+
+Applying a splash:
+
+```
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    
+    [self.waterSurface splash:location speed:-100];
+}
+```
+
+
+TODO:
+-Connecting surface to a body 
+-Adding droplet splash.
+-Allowing for the change of : strokeColor, fillColor
