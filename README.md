@@ -34,7 +34,7 @@ Applying a splash:
 ```
 
 
-TODO:
-1. Connecting surface to a body.
-2. Adding droplet splash.
-3. Allowing for the change of: strokeColor, fillColor
+Markup : *TODO
+       * Connecting surface to a body.
+       * Adding droplet splash.
+       * Allowing for the change of: strokeColor, fillColor
