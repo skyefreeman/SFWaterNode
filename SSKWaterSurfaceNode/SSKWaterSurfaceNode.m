@@ -8,11 +8,8 @@
 
 #import "SSKWaterSurfaceNode.h"
 
-CGFloat const kJointWidth = 10;
-
-//Hooke's law a = -k/m * x
 @implementation SSKWaterJoint
-+ (instancetype)withPosition:(CGPoint)position {
++ (instancetype)jointWithPosition:(CGPoint)position {
     return [[self alloc] initWithPosition:position];
 }
 
@@ -22,39 +19,46 @@ CGFloat const kJointWidth = 10;
         self.startPosition = position;
         self.currentPosition = position;
         self.speed = 0;
+        
+        self.damping = 0.04;
+        self.tension = 0.03;
     }
     return self;
 }
 
 - (void)update:(NSTimeInterval)dt {
-    CGFloat d = 0.025;
-    CGFloat k = 0.025;
     CGFloat x = self.currentPosition.y - self.startPosition.y;
-    CGFloat acceleration = -k * x;
+    CGFloat acceleration = (-self.tension * x) - (self.speed * self.damping);
     
     self.currentPosition = CGPointMake(self.currentPosition.x, self.currentPosition.y + self.speed);
-    self.speed += acceleration - d;
+    self.speed += acceleration;
 }
+
 @end
 
 @interface SSKWaterSurfaceNode()
 @property (nonatomic) NSMutableArray *waterJoints;
 @property (nonatomic) SKShapeNode *waterSurface;
 @property (nonatomic) CGFloat spread;
+@property (nonatomic, readwrite) CGFloat jointWidth;
 @end
 
 @implementation SSKWaterSurfaceNode
-+ (instancetype)withStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
-    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint];
++ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
+    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth];
 }
 
-- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
+- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
     self = [super init];
     if (self) {
-        self.spread = 0.4;
+        self.spread = 0.1;
+        self.jointWidth = jointWidth;
         
         self.waterJoints = [self createSurfacePointsWithStart:startPoint end:endPoint];
+
         self.waterSurface = [SKShapeNode shapeNodeWithPath:[self pathFromJoints:self.waterJoints]];
+        [self.waterSurface setLineWidth:3.0];
+        
         [self addChild:self.waterSurface];
     }
     
@@ -64,7 +68,7 @@ CGFloat const kJointWidth = 10;
 #pragma mark - Water joint creation
 - (NSMutableArray*)createSurfacePointsWithStart:(CGPoint)startPoint end:(CGPoint)endPoint {
     NSMutableArray *tempPoints = [NSMutableArray new];
-    [tempPoints addObject:[SSKWaterJoint withPosition:startPoint]];
+    [tempPoints addObject:[SSKWaterJoint jointWithPosition:startPoint]];
     
     //Get distance between points
     double distance = sqrt(pow(endPoint.x - startPoint.x, 2) + pow(endPoint.y - startPoint.y, 2));
@@ -74,11 +78,11 @@ CGFloat const kJointWidth = 10;
 
     CGFloat totalWidth = 0;
     for (int i = 1; totalWidth < distance; i++) {
-        totalWidth += kJointWidth;
+        totalWidth += self.jointWidth;
         
         double nextX = startPoint.x + totalWidth * cos(rads);
         double nextY = startPoint.y + totalWidth * sin(rads);
-        [tempPoints insertObject:[SSKWaterJoint withPosition:CGPointMake(nextX, nextY)] atIndex:i];
+        [tempPoints insertObject:[SSKWaterJoint jointWithPosition:CGPointMake(nextX, nextY)] atIndex:i];
     }
     
     return [NSMutableArray arrayWithArray:tempPoints];
@@ -91,15 +95,24 @@ CGFloat const kJointWidth = 10;
     for (SSKWaterJoint *joint in joints) {
         CGPathAddLineToPoint(path, nil, [joint currentPosition].x, [joint currentPosition].y);
     }
-    CGPathCloseSubpath(path);
     return path;
 }
 
-#pragma mark - Apply splash 
-- (void)splash:(NSUInteger)index speed:(CGFloat)speed {
-    if (index < self.waterJoints.count) {
-        [(SSKWaterJoint*)[self.waterJoints objectAtIndex:index] setSpeed:speed];
+#pragma mark - Apply splashn
+- (void)splash:(CGPoint)location speed:(CGFloat)speed {
+    //Find the closest joint to given location
+    int closestJointIndex = 0;
+    CGFloat shortestDistance = CGFLOAT_MAX;
+    for (int i = 0; i < self.waterJoints.count; i++) {
+        SSKWaterJoint *joint = (SSKWaterJoint*)[self.waterJoints objectAtIndex:i];
+        CGFloat distance = fabsf(joint.currentPosition.x - location.x);
+        
+        if (distance < shortestDistance) {
+            shortestDistance = distance;
+            closestJointIndex = i;
+        }
     }
+    [(SSKWaterJoint*)[self.waterJoints objectAtIndex:closestJointIndex] setSpeed:speed];
 }
 
 #pragma mark - Update
@@ -116,8 +129,9 @@ CGFloat const kJointWidth = 10;
     
     NSMutableArray *leftDeltas = [self arrayWithCapacity:self.waterJoints.count];
     NSMutableArray *rightDeltas = [self arrayWithCapacity:self.waterJoints.count];
+    NSUInteger iterations = 3;
     
-    for (int j = 0; j < 8; j ++) {
+    for (int j = 0; j < iterations; j ++) {
         for (int i = 0; i < self.waterJoints.count; i++) {
             SSKWaterJoint *currentJoint = (SSKWaterJoint*)[self.waterJoints objectAtIndex:i];
             if (i > 0) {
@@ -159,8 +173,6 @@ CGFloat const kJointWidth = 10;
 - (void)newSpeed:(CGFloat)delta waterJointAtIndex:(NSUInteger)index {
     CGFloat oldSpeed = [(SSKWaterJoint*)[self.waterJoints objectAtIndex:index] speed];
     CGFloat newSpeed = oldSpeed + delta;
-
-    NSLog(@"new speed: %fl",newSpeed);
     
     [(SSKWaterJoint*)[self.waterJoints objectAtIndex:index] setSpeed:newSpeed];
 }

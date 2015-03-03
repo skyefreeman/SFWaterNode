@@ -16,21 +16,24 @@
 
 @implementation GameScene
 
--(void)didMoveToView:(SKView *)view {
+- (void)didMoveToView:(SKView *)view {
     self.backgroundColor = [SKColor blackColor];
 
     CGPoint startPoint = CGPointMake(0, self.size.height/2);
     CGPoint endPoint = CGPointMake(self.size.width, self.size.height/2);
     
-    self.waterSurface = [SSKWaterSurfaceNode withStartPoint:startPoint endPoint:endPoint];
+    self.waterSurface = [SSKWaterSurfaceNode surfaceWithStartPoint:startPoint endPoint:endPoint jointWidth:15];
     [self addChild:self.waterSurface];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.waterSurface splash:15 speed:40];
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    
+    [self.waterSurface splash:location speed:-100];
 }
 
--(void)update:(CFTimeInterval)currentTime {
+- (void)update:(CFTimeInterval)currentTime {
     NSTimeInterval dt = _lastUpdateTime - currentTime;
     _lastUpdateTime = currentTime;
     
