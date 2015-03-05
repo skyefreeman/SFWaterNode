@@ -41,6 +41,9 @@
 @property (nonatomic) SKShapeNode *waterSurface;
 @property (nonatomic) CGFloat spread;
 @property (nonatomic, readwrite) CGFloat jointWidth;
+
+@property (nonatomic) BOOL hasDepth;
+@property (nonatomic) CGFloat bodyDepth;
 @end
 
 @implementation SSKWaterSurfaceNode
@@ -51,13 +54,13 @@
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
     self = [super init];
     if (self) {
-        self.spread = 0.1;
+        self.spread = 0.15;
         self.jointWidth = jointWidth;
         
         self.waterJoints = [self createSurfacePointsWithStart:startPoint end:endPoint];
 
         self.waterSurface = [SKShapeNode shapeNodeWithPath:[self pathFromJoints:self.waterJoints]];
-        [self.waterSurface setLineWidth:3.0];
+        [self.waterSurface setLineWidth:5];
         
         [self addChild:self.waterSurface];
     }
@@ -84,7 +87,7 @@
         double nextY = startPoint.y + totalWidth * sin(rads);
         [tempPoints insertObject:[SSKWaterJoint jointWithPosition:CGPointMake(nextX, nextY)] atIndex:i];
     }
-    
+
     return [NSMutableArray arrayWithArray:tempPoints];
 }
 
@@ -95,10 +98,20 @@
     for (SSKWaterJoint *joint in joints) {
         CGPathAddLineToPoint(path, nil, [joint currentPosition].x, [joint currentPosition].y);
     }
+    
+    //Only if surface has a body
+    if (self.hasDepth) {
+        SSKWaterJoint *firstJoint = (SSKWaterJoint*)[joints firstObject];;
+        SSKWaterJoint *lastJoint = (SSKWaterJoint*)[joints lastObject];
+        
+        CGPathAddLineToPoint(path, nil, lastJoint.currentPosition.x, lastJoint.currentPosition.y - self.bodyDepth - (lastJoint.currentPosition.y - lastJoint.startPosition.y));
+        CGPathAddLineToPoint(path, nil, firstJoint.currentPosition.x, firstJoint.currentPosition.y - self.bodyDepth - (firstJoint.currentPosition.y - firstJoint.startPosition.y));
+        CGPathCloseSubpath(path);
+    }
     return path;
 }
 
-#pragma mark - Apply splashn
+#pragma mark - Apply splash
 - (void)splash:(CGPoint)location speed:(CGFloat)speed {
     //Find the closest joint to given location
     int closestJointIndex = 0;
@@ -129,7 +142,7 @@
     
     NSMutableArray *leftDeltas = [self arrayWithCapacity:self.waterJoints.count];
     NSMutableArray *rightDeltas = [self arrayWithCapacity:self.waterJoints.count];
-    NSUInteger iterations = 3;
+    NSUInteger iterations = 1;
     
     for (int j = 0; j < iterations; j ++) {
         for (int i = 0; i < self.waterJoints.count; i++) {
@@ -160,6 +173,33 @@
 
 - (void)updateSurfaceNodes:(NSTimeInterval)dt {
     [self.waterSurface setPath:[self pathFromJoints:self.waterJoints]];
+}
+
+#pragma mark - Setting a texture to the body
+- (void)setTexture:(SKTexture*)texture {
+    if (self.hasDepth) {
+        [self.waterSurface setFillColor:[SKColor whiteColor]];
+        [self.waterSurface setFillTexture:texture];
+    }
+}
+
+#pragma mark - Setting a body to the water surface
+- (void)setBodyWithDepth:(CGFloat)depth {
+    self.hasDepth = YES;
+    self.bodyDepth = depth;
+}
+
+#pragma mark - Changing SSKWaterJoint Properties
+- (void)setSplashDamping:(CGFloat)damping {
+    for (SSKWaterJoint *joint in self.waterJoints) {
+        joint.damping = damping;
+    }
+}
+
+- (void)setSplashTension:(CGFloat)tension {
+    for (SSKWaterJoint *joint in self.waterJoints) {
+        joint.tension = tension;
+    }
 }
 
 #pragma mark - Convenience

@@ -23,6 +23,10 @@
     CGPoint endPoint = CGPointMake(self.size.width, self.size.height/2);
     
     self.waterSurface = [SSKWaterSurfaceNode surfaceWithStartPoint:startPoint endPoint:endPoint jointWidth:15];
+    [self.waterSurface setSplashDamping:.05];
+    [self.waterSurface setSplashTension:.005];
+    [self.waterSurface setBodyWithDepth:self.size.height/2];
+    [self.waterSurface setTexture:[SKTexture textureWithImageNamed:@"WaterGradientBlue-iphone"]];
     [self addChild:self.waterSurface];
 }
 

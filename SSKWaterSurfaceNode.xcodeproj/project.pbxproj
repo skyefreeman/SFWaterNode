@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EEC9DB911AA918450022CDF1 /* SSKWaterSurfaceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC9DB901AA918450022CDF1 /* SSKWaterSurfaceNode.m */; };
+		EEC9DB931AA918880022CDF1 /* WaterGradientBlue-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = EEC9DB921AA918880022CDF1 /* WaterGradientBlue-iphone.png */; };
 		EECC66A11AA3AB1D004CB609 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66A01AA3AB1D004CB609 /* main.m */; };
 		EECC66A41AA3AB1D004CB609 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66A31AA3AB1D004CB609 /* AppDelegate.m */; };
 		EECC66A71AA3AB1D004CB609 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66A61AA3AB1D004CB609 /* GameScene.m */; };
@@ -15,7 +17,6 @@
 		EECC66B11AA3AB1D004CB609 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EECC66B01AA3AB1D004CB609 /* Images.xcassets */; };
 		EECC66B41AA3AB1D004CB609 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EECC66B21AA3AB1D004CB609 /* LaunchScreen.xib */; };
 		EECC66C01AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66BF1AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.m */; };
-		EECC66CB1AA3ABAC004CB609 /* SSKWaterSurfaceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66CA1AA3ABAC004CB609 /* SSKWaterSurfaceNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EEC9DB8F1AA918450022CDF1 /* SSKWaterSurfaceNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKWaterSurfaceNode.h; sourceTree = "<group>"; };
+		EEC9DB901AA918450022CDF1 /* SSKWaterSurfaceNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKWaterSurfaceNode.m; sourceTree = "<group>"; };
+		EEC9DB921AA918880022CDF1 /* WaterGradientBlue-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WaterGradientBlue-iphone.png"; sourceTree = "<group>"; };
 		EECC669B1AA3AB1D004CB609 /* SSKWaterSurfaceNode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSKWaterSurfaceNode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECC669F1AA3AB1D004CB609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EECC66A01AA3AB1D004CB609 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,8 +48,6 @@
 		EECC66B91AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSKWaterSurfaceNodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECC66BE1AA3AB1D004CB609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EECC66BF1AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSKWaterSurfaceNodeTests.m; sourceTree = "<group>"; };
-		EECC66C91AA3ABAC004CB609 /* SSKWaterSurfaceNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKWaterSurfaceNode.h; sourceTree = "<group>"; };
-		EECC66CA1AA3ABAC004CB609 /* SSKWaterSurfaceNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKWaterSurfaceNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EEC9DB941AA9188C0022CDF1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EEC9DB921AA918880022CDF1 /* WaterGradientBlue-iphone.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		EECC66921AA3AB1D004CB609 = {
 			isa = PBXGroup;
 			children = (
@@ -93,8 +103,9 @@
 				EECC66A61AA3AB1D004CB609 /* GameScene.m */,
 				EECC66AA1AA3AB1D004CB609 /* GameViewController.h */,
 				EECC66AB1AA3AB1D004CB609 /* GameViewController.m */,
-				EECC66C91AA3ABAC004CB609 /* SSKWaterSurfaceNode.h */,
-				EECC66CA1AA3ABAC004CB609 /* SSKWaterSurfaceNode.m */,
+				EEC9DB8F1AA918450022CDF1 /* SSKWaterSurfaceNode.h */,
+				EEC9DB901AA918450022CDF1 /* SSKWaterSurfaceNode.m */,
+				EEC9DB941AA9188C0022CDF1 /* Assets */,
 				EECC66AD1AA3AB1D004CB609 /* Main.storyboard */,
 				EECC66B01AA3AB1D004CB609 /* Images.xcassets */,
 				EECC66B21AA3AB1D004CB609 /* LaunchScreen.xib */,
@@ -209,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC9DB931AA918880022CDF1 /* WaterGradientBlue-iphone.png in Resources */,
 				EECC66B41AA3AB1D004CB609 /* LaunchScreen.xib in Resources */,
 				EECC66B11AA3AB1D004CB609 /* Images.xcassets in Resources */,
 				EECC66AF1AA3AB1D004CB609 /* Main.storyboard in Resources */,
@@ -233,7 +245,7 @@
 				EECC66A41AA3AB1D004CB609 /* AppDelegate.m in Sources */,
 				EECC66A71AA3AB1D004CB609 /* GameScene.m in Sources */,
 				EECC66A11AA3AB1D004CB609 /* main.m in Sources */,
-				EECC66CB1AA3ABAC004CB609 /* SSKWaterSurfaceNode.m in Sources */,
+				EEC9DB911AA918450022CDF1 /* SSKWaterSurfaceNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +438,7 @@
 				EECC66C51AA3AB1D004CB609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EECC66C61AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SSKWaterSurfaceNodeTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +447,7 @@
 				EECC66C81AA3AB1D004CB609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
