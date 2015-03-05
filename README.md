@@ -33,8 +33,21 @@ Applying a splash:
 }
 ```
 
+Adding a body to your surface:
+
+```
+- (void)didMoveToView:(SKView *)view {
+    CGPoint startPoint = CGPointMake(0, self.size.height/2);
+    CGPoint endPoint = CGPointMake(self.size.width, self.size.height/2);
+    
+    SSKWaterSurfaceNode *waterSurface = [SSKWaterSurfaceNode surfaceWithStartPoint:startPoint endPoint:endPoint jointWidth:15];
+    [waterSurface setBodyWithDepth:self.size.height/2];
+    [waterSurface setTexture:[SKTexture textureWithImageNamed:@"imageName"]];
+    [self addChild:self.waterSurface];
+}
+```
+
 # TODO
-* Connecting surface to a body.
 * Adding droplet splash.
 * Allowing for the change of: strokeColor, fillColor
 
