@@ -19,14 +19,10 @@
 - (void)didMoveToView:(SKView *)view {
     self.backgroundColor = [SKColor blackColor];
 
-    CGPoint startPoint = CGPointMake(0, self.size.height/2);
+    CGPoint startPoint = CGPointMake(-1, self.size.height/2);
     CGPoint endPoint = CGPointMake(self.size.width, self.size.height/2);
     
-    self.waterSurface = [SSKWaterSurfaceNode surfaceWithStartPoint:startPoint endPoint:endPoint jointWidth:15];
-    [self.waterSurface setSplashDamping:.05];
-    [self.waterSurface setSplashTension:.005];
-    [self.waterSurface setBodyWithDepth:self.size.height/2];
-    [self.waterSurface setTexture:[SKTexture textureWithImageNamed:@"WaterGradientBlue-iphone"]];
+    self.waterSurface = [SSKWaterSurfaceNode surfaceWithStartPoint:startPoint endPoint:endPoint depth:self.size.height/2 color:[SKColor blueColor]];
     [self addChild:self.waterSurface];
 }
 
@@ -38,13 +34,6 @@
 }
 
 - (void)update:(CFTimeInterval)currentTime {
-    NSTimeInterval dt = _lastUpdateTime - currentTime;
-    _lastUpdateTime = currentTime;
-    
-    if (dt > 1) {
-        dt = 1.0/60.0;
-    }
-    
     [self.waterSurface update:currentTime];
 }
 

@@ -8,6 +8,9 @@
 
 #import "SSKWaterSurfaceNode.h"
 
+CGFloat const kDefaultSpread = 0.15;
+CGFloat const kDefaultJointWidth = 10.0;
+
 @implementation SSKWaterJoint
 + (instancetype)jointWithPosition:(CGPoint)position {
     return [[self alloc] initWithPosition:position];
@@ -47,25 +50,90 @@
 @end
 
 @implementation SSKWaterSurfaceNode
+
+#pragma mark - Initialize with body texture
+- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture {
+    self = [super init];
+    if (self) {
+        self.spread = kDefaultSpread;
+        
+        if (jointWidth) {
+            self.jointWidth = jointWidth;
+        }
+        
+        self.waterJoints = [self createSurfacePointsWithStart:startPoint end:endPoint];
+        
+        self.waterSurface = [SKShapeNode shapeNodeWithPath:[self pathFromJoints:self.waterJoints]];
+        [self addChild:self.waterSurface];
+        
+        if (depth > 0) {
+            [self setBodyWithDepth:depth];
+        }
+        
+        if (texture) {
+            [self setTexture:texture];
+        }
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture {
+    return [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:kDefaultJointWidth depth:depth texture:texture];
+}
+
+#pragma mark - Initialize with body color
+- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color {
+    self = [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:depth texture:nil];
+    if (self) {
+        if (color) {
+            if (depth > 0) {
+                [self.waterSurface setFillColor:color];
+            }
+        }
+    }
+    return self;
+}
+
+- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color {
+    return [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:kDefaultJointWidth depth:depth color:color];
+}
+
+#pragma mark - Initialize with surface path
+- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
+    return [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:0 texture:nil];
+}
+
+- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
+    return [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:kDefaultJointWidth];
+}
+
+#pragma mark - Convenience Initializers
+//Texture init
++ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture {
+    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:depth texture:texture];
+}
+
++ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture {
+    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint depth:depth texture:texture];
+}
+
+//Color init
++ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color {
+    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:depth color:color];
+}
+
++ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color {
+    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint depth:depth color:color];
+}
+
+//Surface only init
 + (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
     return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth];
 }
 
-- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
-    self = [super init];
-    if (self) {
-        self.spread = 0.15;
-        self.jointWidth = jointWidth;
-        
-        self.waterJoints = [self createSurfacePointsWithStart:startPoint end:endPoint];
-
-        self.waterSurface = [SKShapeNode shapeNodeWithPath:[self pathFromJoints:self.waterJoints]];
-        [self.waterSurface setLineWidth:5];
-        
-        [self addChild:self.waterSurface];
-    }
-    
-    return self;
++ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
+    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint];
 }
 
 #pragma mark - Water joint creation
