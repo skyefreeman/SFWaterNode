@@ -75,7 +75,7 @@
  */
 - (void)setTexture:(SKTexture*)texture;
 
-/* 
+/*
  The distance between the surface's joints
  */
 @property (nonatomic, readonly) CGFloat jointWidth;

@@ -42,8 +42,8 @@ CGFloat const kDefaultJointWidth = 10.0;
 @interface SSKWaterSurfaceNode()
 @property (nonatomic) NSMutableArray *waterJoints;
 @property (nonatomic) SKShapeNode *waterSurface;
-@property (nonatomic) CGFloat spread;
 @property (nonatomic, readwrite) CGFloat jointWidth;
+@property (nonatomic) CGFloat spread;
 
 @property (nonatomic) BOOL hasDepth;
 @property (nonatomic) CGFloat bodyDepth;
@@ -64,6 +64,7 @@ CGFloat const kDefaultJointWidth = 10.0;
         self.waterJoints = [self createSurfacePointsWithStart:startPoint end:endPoint];
         
         self.waterSurface = [SKShapeNode shapeNodeWithPath:[self pathFromJoints:self.waterJoints]];
+        [self.waterSurface setStrokeColor:[UIColor clearColor]];
         [self addChild:self.waterSurface];
         
         if (depth > 0) {
