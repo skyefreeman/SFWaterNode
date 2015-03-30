@@ -34,7 +34,7 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     
-    [self.waterSurface splash:location speed:-100];
+    [self.waterSurface splash:location speed:-50];
 }
 
 - (void)update:(CFTimeInterval)currentTime {

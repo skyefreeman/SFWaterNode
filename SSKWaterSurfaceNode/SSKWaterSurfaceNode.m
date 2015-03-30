@@ -172,6 +172,7 @@
 }
 
 - (void)updateSurfaceNodes:(NSTimeInterval)dt {
+    [self.waterSurface setPath:nil];
     [self.waterSurface setPath:[self pathFromJoints:self.waterJoints]];
 }
 
