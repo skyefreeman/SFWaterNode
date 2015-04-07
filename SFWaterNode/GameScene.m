@@ -1,16 +1,16 @@
 //
 //  GameScene.m
-//  SSKWaterSurfaceNode
+//  SFWaterNode
 //
 //  Created by Skye on 3/1/15.
 //  Copyright (c) 2015 Skye Freeman. All rights reserved.
 //
 
 #import "GameScene.h"
-#import "SSKWaterSurfaceNode.h"
+#import "SFWaterNode.h"
 
 @interface GameScene()
-@property (nonatomic) SSKWaterSurfaceNode *waterSurface;
+@property (nonatomic) SFWaterNode *waterSurface;
 @property (nonatomic) NSTimeInterval lastUpdateTime;
 @end
 
@@ -22,7 +22,7 @@
     CGPoint startPoint = CGPointMake(-1, self.size.height/2);
     CGPoint endPoint = CGPointMake(self.size.width, self.size.height/2);
     
-    self.waterSurface = [SSKWaterSurfaceNode surfaceWithStartPoint:startPoint endPoint:endPoint depth:self.size.height/2 color:[SKColor blueColor]];
+    self.waterSurface = [SFWaterNode surfaceWithStartPoint:startPoint endPoint:endPoint depth:self.size.height/2 color:[SKColor blueColor]];
     [self addChild:self.waterSurface];
 }
 

@@ -1,6 +1,6 @@
 //
-//  SSKWaterSurfaceNode.h
-//  SSKWaterSurfaceNode
+//  SFWaterNode.h
+//  SFWaterNode
 //
 //  Created by Skye on 3/1/15.
 //  Copyright (c) 2015 Skye Freeman. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface SSKWaterSurfaceNode : SKNode
+@interface SFWaterNode : SKNode
 
 /* 
  Creates a water surface with a given start point, end point, custom joint width, a body depth, and a body texture.

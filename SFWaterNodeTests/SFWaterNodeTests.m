@@ -1,6 +1,6 @@
 //
-//  SSKWaterSurfaceNodeTests.m
-//  SSKWaterSurfaceNodeTests
+//  SFWaterNodeTests.m
+//  SFWaterNodeTests
 //
 //  Created by Skye on 3/1/15.
 //  Copyright (c) 2015 Skye Freeman. All rights reserved.
@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface SSKWaterSurfaceNodeTests : XCTestCase
+@interface SFWaterNodeTests : XCTestCase
 
 @end
 
-@implementation SSKWaterSurfaceNodeTests
+@implementation SFWaterNodeTests
 
 - (void)setUp {
     [super setUp];

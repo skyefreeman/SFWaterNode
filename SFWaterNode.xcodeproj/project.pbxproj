@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EEC9DB911AA918450022CDF1 /* SSKWaterSurfaceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC9DB901AA918450022CDF1 /* SSKWaterSurfaceNode.m */; };
-		EEC9DB931AA918880022CDF1 /* WaterGradientBlue-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = EEC9DB921AA918880022CDF1 /* WaterGradientBlue-iphone.png */; };
-		EECC66A11AA3AB1D004CB609 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66A01AA3AB1D004CB609 /* main.m */; };
-		EECC66A41AA3AB1D004CB609 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66A31AA3AB1D004CB609 /* AppDelegate.m */; };
-		EECC66A71AA3AB1D004CB609 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66A61AA3AB1D004CB609 /* GameScene.m */; };
-		EECC66AC1AA3AB1D004CB609 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66AB1AA3AB1D004CB609 /* GameViewController.m */; };
-		EECC66AF1AA3AB1D004CB609 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EECC66AD1AA3AB1D004CB609 /* Main.storyboard */; };
-		EECC66B11AA3AB1D004CB609 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EECC66B01AA3AB1D004CB609 /* Images.xcassets */; };
-		EECC66B41AA3AB1D004CB609 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EECC66B21AA3AB1D004CB609 /* LaunchScreen.xib */; };
-		EECC66C01AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC66BF1AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.m */; };
+		EEB870BF1AD467CB000D21E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB870B01AD467CB000D21E6 /* AppDelegate.m */; };
+		EEB870C01AD467CB000D21E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEB870B11AD467CB000D21E6 /* LaunchScreen.xib */; };
+		EEB870C11AD467CB000D21E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEB870B31AD467CB000D21E6 /* Main.storyboard */; };
+		EEB870C21AD467CB000D21E6 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB870B61AD467CB000D21E6 /* GameScene.m */; };
+		EEB870C31AD467CB000D21E6 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB870B81AD467CB000D21E6 /* GameViewController.m */; };
+		EEB870C41AD467CB000D21E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEB870B91AD467CB000D21E6 /* Images.xcassets */; };
+		EEB870C61AD467CB000D21E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB870BB1AD467CB000D21E6 /* main.m */; };
+		EEB870C71AD467CB000D21E6 /* SFWaterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB870BD1AD467CB000D21E6 /* SFWaterNode.m */; };
+		EEB870C81AD467CB000D21E6 /* WaterGradientBlue-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = EEB870BE1AD467CB000D21E6 /* WaterGradientBlue-iphone.png */; };
+		EEB870D31AD46843000D21E6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEB870D21AD46843000D21E6 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,24 +30,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EEC9DB8F1AA918450022CDF1 /* SSKWaterSurfaceNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKWaterSurfaceNode.h; sourceTree = "<group>"; };
-		EEC9DB901AA918450022CDF1 /* SSKWaterSurfaceNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKWaterSurfaceNode.m; sourceTree = "<group>"; };
-		EEC9DB921AA918880022CDF1 /* WaterGradientBlue-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WaterGradientBlue-iphone.png"; sourceTree = "<group>"; };
-		EECC669B1AA3AB1D004CB609 /* SSKWaterSurfaceNode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSKWaterSurfaceNode.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EECC669F1AA3AB1D004CB609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EECC66A01AA3AB1D004CB609 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EECC66A21AA3AB1D004CB609 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EECC66A31AA3AB1D004CB609 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EECC66A51AA3AB1D004CB609 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		EECC66A61AA3AB1D004CB609 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
-		EECC66AA1AA3AB1D004CB609 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
-		EECC66AB1AA3AB1D004CB609 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
-		EECC66AE1AA3AB1D004CB609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EECC66B01AA3AB1D004CB609 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		EECC66B31AA3AB1D004CB609 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		EECC66B91AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSKWaterSurfaceNodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EECC66BE1AA3AB1D004CB609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EECC66BF1AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSKWaterSurfaceNodeTests.m; sourceTree = "<group>"; };
+		EEB870AF1AD467CB000D21E6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EEB870B01AD467CB000D21E6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EEB870B21AD467CB000D21E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		EEB870B41AD467CB000D21E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EEB870B51AD467CB000D21E6 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		EEB870B61AD467CB000D21E6 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		EEB870B71AD467CB000D21E6 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		EEB870B81AD467CB000D21E6 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		EEB870B91AD467CB000D21E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EEB870BA1AD467CB000D21E6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEB870BB1AD467CB000D21E6 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EEB870BC1AD467CB000D21E6 /* SFWaterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFWaterNode.h; sourceTree = "<group>"; };
+		EEB870BD1AD467CB000D21E6 /* SFWaterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFWaterNode.m; sourceTree = "<group>"; };
+		EEB870BE1AD467CB000D21E6 /* WaterGradientBlue-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WaterGradientBlue-iphone.png"; sourceTree = "<group>"; };
+		EEB870CA1AD467DD000D21E6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEB870CB1AD467DD000D21E6 /* SFWaterNodeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFWaterNodeTests.m; sourceTree = "<group>"; };
+		EEB870D21AD46843000D21E6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		EECC669B1AA3AB1D004CB609 /* SFWaterNode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFWaterNode.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EECC66B91AA3AB1D004CB609 /* SFWaterNodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFWaterNodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,19 +69,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EEC9DB941AA9188C0022CDF1 /* Assets */ = {
+		EEB870AE1AD467CB000D21E6 /* SFWaterNode */ = {
 			isa = PBXGroup;
 			children = (
-				EEC9DB921AA918880022CDF1 /* WaterGradientBlue-iphone.png */,
+				EEB870BC1AD467CB000D21E6 /* SFWaterNode.h */,
+				EEB870BD1AD467CB000D21E6 /* SFWaterNode.m */,
+				EEB870D11AD46810000D21E6 /* Application */,
+				EEB870D01AD4680C000D21E6 /* Scene */,
+				EEB870CF1AD467FD000D21E6 /* Assets */,
+				EEB870CE1AD467E6000D21E6 /* Supporting Files */,
+			);
+			path = SFWaterNode;
+			sourceTree = "<group>";
+		};
+		EEB870C91AD467DD000D21E6 /* SFWaterNodeTests */ = {
+			isa = PBXGroup;
+			children = (
+				EEB870CA1AD467DD000D21E6 /* Info.plist */,
+				EEB870CB1AD467DD000D21E6 /* SFWaterNodeTests.m */,
+			);
+			path = SFWaterNodeTests;
+			sourceTree = "<group>";
+		};
+		EEB870CE1AD467E6000D21E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EEB870B11AD467CB000D21E6 /* LaunchScreen.xib */,
+				EEB870B31AD467CB000D21E6 /* Main.storyboard */,
+				EEB870BA1AD467CB000D21E6 /* Info.plist */,
+				EEB870BB1AD467CB000D21E6 /* main.m */,
+				EEB870B91AD467CB000D21E6 /* Images.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EEB870CF1AD467FD000D21E6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EEB870D21AD46843000D21E6 /* Default-568h@2x.png */,
+				EEB870BE1AD467CB000D21E6 /* WaterGradientBlue-iphone.png */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		EEB870D01AD4680C000D21E6 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				EEB870B51AD467CB000D21E6 /* GameScene.h */,
+				EEB870B61AD467CB000D21E6 /* GameScene.m */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		EEB870D11AD46810000D21E6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				EEB870AF1AD467CB000D21E6 /* AppDelegate.h */,
+				EEB870B01AD467CB000D21E6 /* AppDelegate.m */,
+				EEB870B71AD467CB000D21E6 /* GameViewController.h */,
+				EEB870B81AD467CB000D21E6 /* GameViewController.m */,
+			);
+			name = Application;
 			sourceTree = "<group>";
 		};
 		EECC66921AA3AB1D004CB609 = {
 			isa = PBXGroup;
 			children = (
-				EECC669D1AA3AB1D004CB609 /* SSKWaterSurfaceNode */,
-				EECC66BC1AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests */,
+				EEB870AE1AD467CB000D21E6 /* SFWaterNode */,
+				EEB870C91AD467DD000D21E6 /* SFWaterNodeTests */,
 				EECC669C1AA3AB1D004CB609 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,64 +144,18 @@
 		EECC669C1AA3AB1D004CB609 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EECC669B1AA3AB1D004CB609 /* SSKWaterSurfaceNode.app */,
-				EECC66B91AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.xctest */,
+				EECC669B1AA3AB1D004CB609 /* SFWaterNode.app */,
+				EECC66B91AA3AB1D004CB609 /* SFWaterNodeTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		EECC669D1AA3AB1D004CB609 /* SSKWaterSurfaceNode */ = {
-			isa = PBXGroup;
-			children = (
-				EECC66A21AA3AB1D004CB609 /* AppDelegate.h */,
-				EECC66A31AA3AB1D004CB609 /* AppDelegate.m */,
-				EECC66A51AA3AB1D004CB609 /* GameScene.h */,
-				EECC66A61AA3AB1D004CB609 /* GameScene.m */,
-				EECC66AA1AA3AB1D004CB609 /* GameViewController.h */,
-				EECC66AB1AA3AB1D004CB609 /* GameViewController.m */,
-				EEC9DB8F1AA918450022CDF1 /* SSKWaterSurfaceNode.h */,
-				EEC9DB901AA918450022CDF1 /* SSKWaterSurfaceNode.m */,
-				EEC9DB941AA9188C0022CDF1 /* Assets */,
-				EECC66AD1AA3AB1D004CB609 /* Main.storyboard */,
-				EECC66B01AA3AB1D004CB609 /* Images.xcassets */,
-				EECC66B21AA3AB1D004CB609 /* LaunchScreen.xib */,
-				EECC669E1AA3AB1D004CB609 /* Supporting Files */,
-			);
-			path = SSKWaterSurfaceNode;
-			sourceTree = "<group>";
-		};
-		EECC669E1AA3AB1D004CB609 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EECC669F1AA3AB1D004CB609 /* Info.plist */,
-				EECC66A01AA3AB1D004CB609 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EECC66BC1AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests */ = {
-			isa = PBXGroup;
-			children = (
-				EECC66BF1AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.m */,
-				EECC66BD1AA3AB1D004CB609 /* Supporting Files */,
-			);
-			path = SSKWaterSurfaceNodeTests;
-			sourceTree = "<group>";
-		};
-		EECC66BD1AA3AB1D004CB609 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EECC66BE1AA3AB1D004CB609 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EECC669A1AA3AB1D004CB609 /* SSKWaterSurfaceNode */ = {
+		EECC669A1AA3AB1D004CB609 /* SFWaterNode */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EECC66C31AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SSKWaterSurfaceNode" */;
+			buildConfigurationList = EECC66C31AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SFWaterNode" */;
 			buildPhases = (
 				EECC66971AA3AB1D004CB609 /* Sources */,
 				EECC66981AA3AB1D004CB609 /* Frameworks */,
@@ -155,14 +165,14 @@
 			);
 			dependencies = (
 			);
-			name = SSKWaterSurfaceNode;
+			name = SFWaterNode;
 			productName = SSKWaterSurfaceNode;
-			productReference = EECC669B1AA3AB1D004CB609 /* SSKWaterSurfaceNode.app */;
+			productReference = EECC669B1AA3AB1D004CB609 /* SFWaterNode.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EECC66B81AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests */ = {
+		EECC66B81AA3AB1D004CB609 /* SFWaterNodeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EECC66C61AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SSKWaterSurfaceNodeTests" */;
+			buildConfigurationList = EECC66C61AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SFWaterNodeTests" */;
 			buildPhases = (
 				EECC66B51AA3AB1D004CB609 /* Sources */,
 				EECC66B61AA3AB1D004CB609 /* Frameworks */,
@@ -173,9 +183,9 @@
 			dependencies = (
 				EECC66BB1AA3AB1D004CB609 /* PBXTargetDependency */,
 			);
-			name = SSKWaterSurfaceNodeTests;
+			name = SFWaterNodeTests;
 			productName = SSKWaterSurfaceNodeTests;
-			productReference = EECC66B91AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.xctest */;
+			productReference = EECC66B91AA3AB1D004CB609 /* SFWaterNodeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -189,6 +199,7 @@
 				TargetAttributes = {
 					EECC669A1AA3AB1D004CB609 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = DNM8FCEPB5;
 					};
 					EECC66B81AA3AB1D004CB609 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -196,7 +207,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EECC66961AA3AB1D004CB609 /* Build configuration list for PBXProject "SSKWaterSurfaceNode" */;
+			buildConfigurationList = EECC66961AA3AB1D004CB609 /* Build configuration list for PBXProject "SFWaterNode" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -209,8 +220,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EECC669A1AA3AB1D004CB609 /* SSKWaterSurfaceNode */,
-				EECC66B81AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests */,
+				EECC669A1AA3AB1D004CB609 /* SFWaterNode */,
+				EECC66B81AA3AB1D004CB609 /* SFWaterNodeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,10 +231,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEC9DB931AA918880022CDF1 /* WaterGradientBlue-iphone.png in Resources */,
-				EECC66B41AA3AB1D004CB609 /* LaunchScreen.xib in Resources */,
-				EECC66B11AA3AB1D004CB609 /* Images.xcassets in Resources */,
-				EECC66AF1AA3AB1D004CB609 /* Main.storyboard in Resources */,
+				EEB870C41AD467CB000D21E6 /* Images.xcassets in Resources */,
+				EEB870C81AD467CB000D21E6 /* WaterGradientBlue-iphone.png in Resources */,
+				EEB870C01AD467CB000D21E6 /* LaunchScreen.xib in Resources */,
+				EEB870D31AD46843000D21E6 /* Default-568h@2x.png in Resources */,
+				EEB870C11AD467CB000D21E6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,11 +253,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EECC66AC1AA3AB1D004CB609 /* GameViewController.m in Sources */,
-				EECC66A41AA3AB1D004CB609 /* AppDelegate.m in Sources */,
-				EECC66A71AA3AB1D004CB609 /* GameScene.m in Sources */,
-				EECC66A11AA3AB1D004CB609 /* main.m in Sources */,
-				EEC9DB911AA918450022CDF1 /* SSKWaterSurfaceNode.m in Sources */,
+				EEB870C21AD467CB000D21E6 /* GameScene.m in Sources */,
+				EEB870C31AD467CB000D21E6 /* GameViewController.m in Sources */,
+				EEB870C61AD467CB000D21E6 /* main.m in Sources */,
+				EEB870BF1AD467CB000D21E6 /* AppDelegate.m in Sources */,
+				EEB870C71AD467CB000D21E6 /* SFWaterNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EECC66C01AA3AB1D004CB609 /* SSKWaterSurfaceNodeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,26 +273,26 @@
 /* Begin PBXTargetDependency section */
 		EECC66BB1AA3AB1D004CB609 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EECC669A1AA3AB1D004CB609 /* SSKWaterSurfaceNode */;
+			target = EECC669A1AA3AB1D004CB609 /* SFWaterNode */;
 			targetProxy = EECC66BA1AA3AB1D004CB609 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EECC66AD1AA3AB1D004CB609 /* Main.storyboard */ = {
+		EEB870B11AD467CB000D21E6 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EECC66AE1AA3AB1D004CB609 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EECC66B21AA3AB1D004CB609 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EECC66B31AA3AB1D004CB609 /* Base */,
+				EEB870B21AD467CB000D21E6 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		EEB870B31AD467CB000D21E6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEB870B41AD467CB000D21E6 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -369,9 +380,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SSKWaterSurfaceNode/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/SFWaterNode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SFWaterNode;
 			};
 			name = Debug;
 		};
@@ -379,9 +391,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SSKWaterSurfaceNode/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/SFWaterNode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SFWaterNode;
 			};
 			name = Release;
 		};
@@ -397,9 +410,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SSKWaterSurfaceNodeTests/Info.plist;
+				INFOPLIST_FILE = SFWaterNodeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SFWaterNodeTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SSKWaterSurfaceNode.app/SSKWaterSurfaceNode";
 			};
 			name = Debug;
@@ -412,9 +425,9 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SSKWaterSurfaceNodeTests/Info.plist;
+				INFOPLIST_FILE = SFWaterNodeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SFWaterNodeTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SSKWaterSurfaceNode.app/SSKWaterSurfaceNode";
 			};
 			name = Release;
@@ -422,7 +435,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EECC66961AA3AB1D004CB609 /* Build configuration list for PBXProject "SSKWaterSurfaceNode" */ = {
+		EECC66961AA3AB1D004CB609 /* Build configuration list for PBXProject "SFWaterNode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EECC66C11AA3AB1D004CB609 /* Debug */,
@@ -431,7 +444,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EECC66C31AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SSKWaterSurfaceNode" */ = {
+		EECC66C31AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SFWaterNode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EECC66C41AA3AB1D004CB609 /* Debug */,
@@ -440,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EECC66C61AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SSKWaterSurfaceNodeTests" */ = {
+		EECC66C61AA3AB1D004CB609 /* Build configuration list for PBXNativeTarget "SFWaterNodeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EECC66C71AA3AB1D004CB609 /* Debug */,

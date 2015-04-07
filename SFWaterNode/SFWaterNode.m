@@ -1,12 +1,12 @@
 //
-//  SSKWaterSurfaceNode.m
-//  SSKWaterSurfaceNode
+//  SFWaterNode.m
+//  SFWaterNode
 //
 //  Created by Skye on 3/1/15.
 //  Copyright (c) 2015 Skye Freeman. All rights reserved.
 //
 
-#import "SSKWaterSurfaceNode.h"
+#import "SFWaterNode.h"
 
 CGFloat const kDefaultSpread = 0.15;
 CGFloat const kDefaultJointWidth = 10.0;
@@ -39,7 +39,7 @@ CGFloat const kDefaultJointWidth = 10.0;
 
 @end
 
-@interface SSKWaterSurfaceNode()
+@interface SFWaterNode()
 @property (nonatomic) NSMutableArray *waterJoints;
 @property (nonatomic) SKShapeNode *waterSurface;
 @property (nonatomic, readwrite) CGFloat jointWidth;
@@ -49,7 +49,7 @@ CGFloat const kDefaultJointWidth = 10.0;
 @property (nonatomic) CGFloat bodyDepth;
 @end
 
-@implementation SSKWaterSurfaceNode
+@implementation SFWaterNode
 
 #pragma mark - Initialize with body texture
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture {

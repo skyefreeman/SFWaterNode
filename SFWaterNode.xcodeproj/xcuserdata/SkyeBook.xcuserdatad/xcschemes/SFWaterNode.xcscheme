@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EECC669A1AA3AB1D004CB609"
-               BuildableName = "SSKWaterSurfaceNode.app"
-               BlueprintName = "SSKWaterSurfaceNode"
-               ReferencedContainer = "container:SSKWaterSurfaceNode.xcodeproj">
+               BuildableName = "SFWaterNode.app"
+               BlueprintName = "SFWaterNode"
+               ReferencedContainer = "container:SFWaterNode.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EECC66B81AA3AB1D004CB609"
-               BuildableName = "SSKWaterSurfaceNodeTests.xctest"
-               BlueprintName = "SSKWaterSurfaceNodeTests"
-               ReferencedContainer = "container:SSKWaterSurfaceNode.xcodeproj">
+               BuildableName = "SFWaterNodeTests.xctest"
+               BlueprintName = "SFWaterNodeTests"
+               ReferencedContainer = "container:SFWaterNode.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,24 +42,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EECC66B81AA3AB1D004CB609"
-               BuildableName = "SSKWaterSurfaceNodeTests.xctest"
-               BlueprintName = "SSKWaterSurfaceNodeTests"
-               ReferencedContainer = "container:SSKWaterSurfaceNode.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EECC669A1AA3AB1D004CB609"
-            BuildableName = "SSKWaterSurfaceNode.app"
-            BlueprintName = "SSKWaterSurfaceNode"
-            ReferencedContainer = "container:SSKWaterSurfaceNode.xcodeproj">
+            BuildableName = "SFWaterNode.app"
+            BlueprintName = "SFWaterNode"
+            ReferencedContainer = "container:SFWaterNode.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,13 +62,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EECC669A1AA3AB1D004CB609"
-            BuildableName = "SSKWaterSurfaceNode.app"
-            BlueprintName = "SSKWaterSurfaceNode"
-            ReferencedContainer = "container:SSKWaterSurfaceNode.xcodeproj">
+            BuildableName = "SFWaterNode.app"
+            BlueprintName = "SFWaterNode"
+            ReferencedContainer = "container:SFWaterNode.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,13 +81,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EECC669A1AA3AB1D004CB609"
-            BuildableName = "SSKWaterSurfaceNode.app"
-            BlueprintName = "SSKWaterSurfaceNode"
-            ReferencedContainer = "container:SSKWaterSurfaceNode.xcodeproj">
+            BuildableName = "SFWaterNode.app"
+            BlueprintName = "SFWaterNode"
+            ReferencedContainer = "container:SFWaterNode.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

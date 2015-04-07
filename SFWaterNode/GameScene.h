@@ -1,6 +1,6 @@
 //
 //  GameScene.h
-//  SSKWaterSurfaceNode
+//  SFWaterNode
 //
 
 //  Copyright (c) 2015 Skye Freeman. All rights reserved.
