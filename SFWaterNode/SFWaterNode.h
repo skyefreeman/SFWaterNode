@@ -13,37 +13,37 @@
 /* 
  Creates a water surface with a given start point, end point, custom joint width, a body depth, and a body texture.
  */
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture;
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture;
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture;
 
 /*
  Creates a water surface with a given start point, end point, a body depth, and a body texture.
  */
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture;
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture;
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture;
 
 /*
  Creates a water surface with a given start point, end point, custom joint width, a body depth, and a body fill color
  */
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color;
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color;
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color;
 
 /*
  Creates a water surface with a given start point, end point, a body depth, and a body fill color
  */
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color;
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color;
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color;
 
 /*
  Creates a water surface with a given start point, end point and custom joint width.
  */
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth;
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth;
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth;
 
 /*
  Creates a water surface with a given start and end point.
  */
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 - (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 
 /* 

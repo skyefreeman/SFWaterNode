@@ -111,29 +111,29 @@ CGFloat const kDefaultJointWidth = 10.0;
 
 #pragma mark - Convenience Initializers
 //Texture init
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture {
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture {
     return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:depth texture:texture];
 }
 
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture {
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture {
     return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint depth:depth texture:texture];
 }
 
 //Color init
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color {
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color {
     return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:depth color:color];
 }
 
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color {
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color {
     return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint depth:depth color:color];
 }
 
 //Surface only init
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
     return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth];
 }
 
-+ (instancetype)surfaceWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
     return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint];
 }
 

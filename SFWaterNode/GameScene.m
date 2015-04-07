@@ -22,7 +22,7 @@
     CGPoint startPoint = CGPointMake(-1, self.size.height/2);
     CGPoint endPoint = CGPointMake(self.size.width, self.size.height/2);
     
-    self.waterSurface = [SFWaterNode surfaceWithStartPoint:startPoint endPoint:endPoint depth:self.size.height/2 color:[SKColor blueColor]];
+    self.waterSurface = [SFWaterNode nodeWithStartPoint:startPoint endPoint:endPoint depth:self.size.height/2 color:[SKColor blueColor]];
     [self addChild:self.waterSurface];
 }
 
