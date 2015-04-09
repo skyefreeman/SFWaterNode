@@ -85,7 +85,7 @@
 
 @end
 
-@interface SSKWaterJoint : NSObject
+@interface SFWaterJoint : NSObject
 + (instancetype)jointWithPosition:(CGPoint)position;
 - (instancetype)initWithPosition:(CGPoint)position;
 
@@ -93,5 +93,5 @@
 @property (nonatomic) CGPoint currentPosition;
 @property (nonatomic) CGFloat speed;
 @property (nonatomic) CGFloat damping;
-@property (nonatomic) CGFloat tension; // -Default is 0.03, must be less than damping
+@property (nonatomic) CGFloat tension;
 @end
