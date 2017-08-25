@@ -1,0 +1,22 @@
+{
+  "name": "SFWaterNode",
+  "version": "0.1.0",
+  "summary": "A short description of SFWaterNode.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/skyefreeman/SFWaterNode",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "skyefreeman": "skyefreeman@icloud.com"
+  },
+  "source": {
+    "git": "https://github.com/skyefreeman/SFWaterNode.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SFWaterNode/Classes/**/*"
+}

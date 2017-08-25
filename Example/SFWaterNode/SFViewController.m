@@ -7,23 +7,29 @@
 //
 
 #import "SFViewController.h"
+#import "SFGameScene.h"
 
 @interface SFViewController ()
-
 @end
 
 @implementation SFViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    SKView *skView = (SKView *)self.view;
+    skView.showsFPS = YES;
+    skView.showsNodeCount = YES;
+    skView.ignoresSiblingOrder = YES;
+
+    SFGameScene *scene = [SFGameScene sceneWithSize:skView.frame.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    
+    [skView presentScene:scene];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end

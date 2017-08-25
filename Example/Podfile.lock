@@ -1,0 +1,22 @@
+PODS:
+  - Expecta (1.0.5)
+  - SFWaterNode (0.1.0)
+  - Specta (1.0.6)
+
+DEPENDENCIES:
+  - Expecta
+  - SFWaterNode (from `../`)
+  - Specta
+
+EXTERNAL SOURCES:
+  SFWaterNode:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
+  SFWaterNode: 12bcb5b8ec68f9e1404ebc1229260a06c602b2fb
+  Specta: f506f3a8361de16bc0dcf3b17b75e269072ba465
+
+PODFILE CHECKSUM: 7fc319ab8fa93bf1e3a4eac4a4bc9a7e4ccdbbdd
+
+COCOAPODS: 1.2.1
