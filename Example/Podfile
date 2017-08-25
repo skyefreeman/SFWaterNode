@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'SFWaterNode_Example' do
+  pod 'SFWaterNode', :path => '../'
+
+  target 'SFWaterNode_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+  pod 'Expecta'
+  end
+end
