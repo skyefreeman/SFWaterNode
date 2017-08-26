@@ -10,8 +10,11 @@
 
 CGFloat const kDefaultSpread = 0.15;
 CGFloat const kDefaultJointWidth = 10.0;
+CGFloat const kDefaultDamping = 0.04;
+CGFloat const kDefaultTension = 0.03;
 
 @implementation SFWaterJoint
+
 + (instancetype)jointWithPosition:(CGPoint)position {
     return [[self alloc] initWithPosition:position];
 }
@@ -22,9 +25,8 @@ CGFloat const kDefaultJointWidth = 10.0;
         self.startPosition = position;
         self.currentPosition = position;
         self.speed = 0;
-        
-        self.damping = 0.04;
-        self.tension = 0.03;
+        self.damping = kDefaultDamping;
+        self.tension = kDefaultTension;
     }
     return self;
 }
@@ -40,13 +42,27 @@ CGFloat const kDefaultJointWidth = 10.0;
 @end
 
 @interface SFWaterNode()
-@property (nonatomic) NSMutableArray *waterJoints;
-@property (nonatomic) SKShapeNode *waterSurface;
-@property (nonatomic, readwrite) CGFloat jointWidth;
-@property (nonatomic) CGFloat spread;
 
-@property (nonatomic) BOOL hasDepth;
-@property (nonatomic) CGFloat bodyDepth;
+@property (nonatomic, copy) NSMutableArray *waterJoints;
+@property (nonatomic) SKShapeNode *waterSurface;
+@property (nonatomic) CGFloat spread;
+@property (nonatomic, readwrite) CGFloat jointWidth;
+@end
+
+@implementation SFWaterNode(Convenience)
+
+- (CGFloat)maxX {
+    return [(SFWaterJoint *)self.waterJoints.lastObject startPosition].x;
+}
+
+- (CGFloat)minX {
+    return [(SFWaterJoint *)self.waterJoints.firstObject startPosition].x;
+}
+
+- (BOOL)hasDepth {
+    return self.bodyDepth > 0;
+}
+
 @end
 
 @implementation SFWaterNode {
@@ -54,93 +70,74 @@ CGFloat const kDefaultJointWidth = 10.0;
 }
 
 #pragma mark - Initialize with body texture
-- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture {
+
+- (instancetype)initWithStartPoint:(CGPoint)startPoint
+                          endPoint:(CGPoint)endPoint
+                             depth:(CGFloat)depth
+                           texture:(SKTexture*)texture
+{
     self = [super init];
     if (self) {
+        
         self.spread = kDefaultSpread;
-        
-        if (jointWidth) {
-            self.jointWidth = jointWidth;
-        }
-        
+        self.jointWidth = kDefaultJointWidth;
+        self.bodyDepth = depth;
         self.waterJoints = [self createSurfacePointsWithStart:startPoint end:endPoint];
-        _waterPath = [self newPathFromJoints:self.waterJoints];
         
+        _waterPath = [self newPathFromJoints:self.waterJoints];
         self.waterSurface = [SKShapeNode shapeNodeWithPath:_waterPath];
-        [self.waterSurface setStrokeColor:[SKColor whiteColor]];
+        self.waterSurface.strokeColor = (depth > 0) ? [SKColor clearColor] : [SKColor whiteColor];
         [self addChild:self.waterSurface];
         
-        if (depth > 0) {
-            [self setBodyWithDepth:depth];
-        }
-        
-        if (texture) {
+        if (texture != nil) {
             [self setTexture:texture];
         }
     }
-    
     return self;
 }
 
-- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture {
-    return [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:kDefaultJointWidth depth:depth texture:texture];
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint
+                          endPoint:(CGPoint)endPoint
+                             depth:(CGFloat)depth
+                           texture:(SKTexture*)texture
+{
+    return [[self alloc] initWithStartPoint:startPoint
+                                   endPoint:endPoint
+                                      depth:depth
+                                    texture:texture];
 }
 
 #pragma mark - Initialize with body color
-- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color {
-    self = [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:depth texture:nil];
+
+- (instancetype)initWithStartPoint:(CGPoint)startPoint
+                          endPoint:(CGPoint)endPoint
+                             depth:(CGFloat)depth
+                             color:(SKColor*)color
+{
+    self = [self initWithStartPoint:startPoint
+                           endPoint:endPoint
+                              depth:depth
+                            texture:nil];
+
     if (self) {
-        if (color) {
-            if (depth > 0) {
-                [self.waterSurface setFillColor:color];
-            }
-        }
+        [self.waterSurface setFillColor:color];
     }
     return self;
 }
 
-- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color {
-    return [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:kDefaultJointWidth depth:depth color:color];
-}
-
-#pragma mark - Initialize with surface path
-- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
-    return [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:0 texture:nil];
-}
-
-- (instancetype)initWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
-    return [self initWithStartPoint:startPoint endPoint:endPoint jointWidth:kDefaultJointWidth];
-}
-
-#pragma mark - Convenience Initializers
-//Texture init
-+ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth texture:(SKTexture*)texture {
-    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:depth texture:texture];
-}
-
-+ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth texture:(SKTexture *)texture {
-    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint depth:depth texture:texture];
-}
-
-//Color init
-+ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth depth:(CGFloat)depth color:(SKColor*)color {
-    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth depth:depth color:color];
-}
-
-+ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint depth:(CGFloat)depth color:(SKColor*)color {
-    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint depth:depth color:color];
-}
-
-//Surface only init
-+ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint jointWidth:(CGFloat)jointWidth {
-    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint jointWidth:jointWidth];
-}
-
-+ (instancetype)nodeWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
-    return [[self alloc] initWithStartPoint:startPoint endPoint:endPoint];
++ (instancetype)nodeWithStartPoint:(CGPoint)startPoint
+                          endPoint:(CGPoint)endPoint
+                             depth:(CGFloat)depth
+                             color:(SKColor*)color
+{
+    return [[self alloc] initWithStartPoint:startPoint
+                                   endPoint:endPoint
+                                      depth:depth
+                                      color:color];
 }
 
 #pragma mark - Water joint creation
+
 - (NSMutableArray*)createSurfacePointsWithStart:(CGPoint)startPoint end:(CGPoint)endPoint {
     NSMutableArray *tempPoints = [NSMutableArray new];
     [tempPoints addObject:[SFWaterJoint jointWithPosition:startPoint]];
@@ -171,8 +168,7 @@ CGFloat const kDefaultJointWidth = 10.0;
         CGPathAddLineToPoint(path, nil, [joint currentPosition].x, [joint currentPosition].y);
     }
     
-    //Only if surface has a body
-    if (self.hasDepth) {
+    if ([self hasDepth]) {
         SFWaterJoint *firstJoint = (SFWaterJoint*)[joints firstObject];;
         SFWaterJoint *lastJoint = (SFWaterJoint*)[joints lastObject];
         
@@ -184,63 +180,91 @@ CGFloat const kDefaultJointWidth = 10.0;
 }
 
 #pragma mark - Apply splash
-- (void)splash:(CGPoint)location speed:(CGFloat)speed {
-    //Find the closest joint to given location
-    int closestJointIndex = 0;
-    CGFloat shortestDistance = CGFLOAT_MAX;
-    for (int i = 0; i < self.waterJoints.count; i++) {
-        SFWaterJoint *joint = (SFWaterJoint*)[self.waterJoints objectAtIndex:i];
-        CGFloat distance = fabsf(joint.currentPosition.x - location.x);
-        
-        if (distance < shortestDistance) {
-            shortestDistance = distance;
-            closestJointIndex = i;
-        }
-    }
-    [(SFWaterJoint*)[self.waterJoints objectAtIndex:closestJointIndex] setSpeed:speed];
+
+- (void)splash:(CGPoint)location
+         speed:(CGFloat)speed
+{
+    SFWaterJoint *joint = [self jointAtXPosition:location.x];
+    [joint setSpeed:speed];
+}
+
+- (SFWaterJoint *)jointAtXPosition:(CGFloat)xLocation {
+    if (xLocation >= self.maxX) return self.waterJoints.lastObject;
+    else if (xLocation <= self.minX) return self.waterJoints.firstObject;
+    
+    CGFloat distance = self.maxX - self.minX;
+    CGFloat offsetXLocation = xLocation - self.minX;
+    CGFloat percentageXLocation = offsetXLocation/distance;
+    return self.waterJoints[(NSInteger)(self.waterJoints.count * percentageXLocation)];
 }
 
 #pragma mark - Update
+
 - (void)update:(NSTimeInterval)dt {
     [self updateJoints:dt];
     [self updateSurfaceNodes:dt];
 }
 
 - (void)updateJoints:(NSTimeInterval)dt {
-    //Apply Hooke's law
-    for (int i = 0; i < self.waterJoints.count; i++) {
-        [(SFWaterJoint*)[self.waterJoints objectAtIndex:i] update:dt];
+    // Apply Hooke's Law!
+    for (SFWaterJoint *joint in self.waterJoints) {
+        [joint update:dt];
     }
     
-    NSMutableArray *leftDeltas = [self arrayWithCapacity:self.waterJoints.count];
-    NSMutableArray *rightDeltas = [self arrayWithCapacity:self.waterJoints.count];
+    NSMutableArray *leftDeltas = [self placeholderArrayWithCapacity:self.waterJoints.count];
+    NSMutableArray *rightDeltas = [self placeholderArrayWithCapacity:self.waterJoints.count];
     NSUInteger iterations = 1;
     
-    for (int j = 0; j < iterations; j ++) {
+    for (int j = 0; j < iterations; j++) {
+        
+        // Set the updated joint speed.
         for (int i = 0; i < self.waterJoints.count; i++) {
-            SFWaterJoint *currentJoint = (SFWaterJoint*)[self.waterJoints objectAtIndex:i];
             if (i > 0) {
-                SFWaterJoint *previousjoint = (SFWaterJoint*)[self.waterJoints objectAtIndex:i - 1];
-                [leftDeltas removeObjectAtIndex:i];
-                [leftDeltas insertObject:[NSNumber numberWithFloat:(self.spread * (currentJoint.currentPosition.y - previousjoint.currentPosition.y))] atIndex:i];
-                [self newSpeed:[(NSNumber*)[leftDeltas objectAtIndex:i] floatValue] waterJointAtIndex:i - 1];
+                [self updateJointSpeedsWithDeltas:leftDeltas right:NO index:i];
             }
             if (i < self.waterJoints.count - 1) {
-                SFWaterJoint *nextJoint = (SFWaterJoint*)[self.waterJoints objectAtIndex:i + 1];
-                [rightDeltas removeObjectAtIndex:i];
-                [rightDeltas insertObject:[NSNumber numberWithFloat:(self.spread * (currentJoint.currentPosition.y - nextJoint.currentPosition.y))] atIndex:i];
-                [self newSpeed:[(NSNumber*)[rightDeltas objectAtIndex:i] floatValue] waterJointAtIndex:i + 1];
+                [self updateJointSpeedsWithDeltas:rightDeltas right:YES index:i];
             }
         }
+        
+        // Set the updated joint height in a separate iteration.
         for (int i = 0; i < self.waterJoints.count; i++) {
             if (i > 0) {
-                [self newHeight:[(NSNumber*)[leftDeltas objectAtIndex:i] floatValue] waterJointAtIndex:i - 1];
+                [self updateJointHeightsWithDeltas:leftDeltas right:NO index:i];
             }
             if (i < self.waterJoints.count - 1) {
-                [self newHeight:[(NSNumber*)[rightDeltas objectAtIndex:i] floatValue] waterJointAtIndex:i + 1];
+                [self updateJointHeightsWithDeltas:rightDeltas right:YES index:i];
             }
         }
     }
+}
+
+- (void)updateJointSpeedsWithDeltas:(NSMutableArray *)jointDeltas
+                             right:(BOOL)rightwards
+                             index:(NSInteger)index
+{
+    NSInteger offset = rightwards ? 1 : -1;
+    SFWaterJoint *currentJoint = [self.waterJoints objectAtIndex:index];
+    SFWaterJoint *nextJoint = [self.waterJoints objectAtIndex:index + offset];
+    CGFloat delta = self.spread * (currentJoint.currentPosition.y - nextJoint.currentPosition.y);
+    
+    [jointDeltas replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:delta]];
+    
+    CGFloat oldSpeed = nextJoint.speed;
+    nextJoint.speed = oldSpeed + delta;
+}
+
+- (void)updateJointHeightsWithDeltas:(NSMutableArray *)jointDeltas
+                              right:(BOOL)rightwards
+                              index:(NSInteger)index
+{
+    NSInteger offset = rightwards ? 1 : -1;
+    CGFloat delta = [(NSNumber *)jointDeltas[index] floatValue];
+    
+    SFWaterJoint *nextJoint = (SFWaterJoint*)self.waterJoints[index + offset];
+    CGPoint oldPosition = nextJoint.currentPosition;
+    CGFloat newHeight = oldPosition.y + delta;
+    nextJoint.currentPosition = CGPointMake(oldPosition.x, newHeight);
 }
 
 - (void)updateSurfaceNodes:(NSTimeInterval)dt {
@@ -251,20 +275,16 @@ CGFloat const kDefaultJointWidth = 10.0;
 }
 
 #pragma mark - Setting a texture to the body
-- (void)setTexture:(SKTexture*)texture {
-    if (self.hasDepth) {
-        [self.waterSurface setFillColor:[SKColor whiteColor]];
-        [self.waterSurface setFillTexture:texture];
-    }
-}
 
-#pragma mark - Setting a body to the water surface
-- (void)setBodyWithDepth:(CGFloat)depth {
-    self.hasDepth = YES;
-    self.bodyDepth = depth;
+- (void)setTexture:(SKTexture*)texture {
+    NSAssert([self hasDepth], @"Cannot set a texture to a body without depth.");
+    
+    [self.waterSurface setFillColor:[SKColor whiteColor]];
+    [self.waterSurface setFillTexture:texture];
 }
 
 #pragma mark - Changing SFWaterJoint Properties
+
 - (void)setSplashDamping:(CGFloat)damping {
     for (SFWaterJoint *joint in self.waterJoints) {
         joint.damping = damping;
@@ -278,21 +298,8 @@ CGFloat const kDefaultJointWidth = 10.0;
 }
 
 #pragma mark - Convenience
-- (void)newHeight:(CGFloat)delta waterJointAtIndex:(NSUInteger)index {
-    CGPoint oldPosition = [(SFWaterJoint*)[self.waterJoints objectAtIndex:index] currentPosition];
-    CGFloat newHeight = oldPosition.y + delta;
-    
-    [(SFWaterJoint*)[self.waterJoints objectAtIndex:index] setCurrentPosition:CGPointMake(oldPosition.x, newHeight)];
-}
 
-- (void)newSpeed:(CGFloat)delta waterJointAtIndex:(NSUInteger)index {
-    CGFloat oldSpeed = [(SFWaterJoint*)[self.waterJoints objectAtIndex:index] speed];
-    CGFloat newSpeed = oldSpeed + delta;
-    
-    [(SFWaterJoint*)[self.waterJoints objectAtIndex:index] setSpeed:newSpeed];
-}
-
-- (NSMutableArray*)arrayWithCapacity:(NSUInteger)capacity {
+- (NSMutableArray*)placeholderArrayWithCapacity:(NSUInteger)capacity {
     NSMutableArray *array = [NSMutableArray new];
     for (int i = 0; i < capacity; i++) {
         [array addObject:[NSNumber numberWithFloat:0]];
